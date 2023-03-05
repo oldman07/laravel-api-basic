@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\StudentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', function () {
-    return 'hi i am from api';
-});
-
+Route::get('/students', [StudentController::class,'index']);
+Route::get('/students/{id}', [StudentController::class,'show']);
+Route::post('/students', [StudentController::class,'store']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

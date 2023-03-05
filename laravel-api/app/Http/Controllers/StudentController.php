@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 
-class StudenController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return Student::all();
     }
 
     /**
@@ -27,7 +28,12 @@ class StudenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request-> validate([
+            'name' => 'required',
+            'city' => 'required',
+            'fees' => 'required',
+        ]);
+        return Student::create($request->all());
     }
 
     /**
@@ -35,7 +41,7 @@ class StudenController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Student::find($id);
     }
 
     /**
